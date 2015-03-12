@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="BelfiusInspecSolver" nsURI="http:/www.misc.com/projects.belfius.solver"
+    nsPrefix="BelfiusInspecSolver">
+  <eClassifiers xsi:type="ecore:EClass" name="Domain">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Inspectors" upperBound="-1"
+        eType="#//Inspector" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Inspections" upperBound="-1"
+        eType="#//Inspection" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Locations" upperBound="-1"
+        eType="#//Location" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="SubDomains" upperBound="-1"
+        eType="#//Domain" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inspector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InspectionTimeWindows"
+        upperBound="-1" eType="#//InspectionTimeWindow" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inspection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="VisitTimeWindows" upperBound="-1"
+        eType="#//VisitTimeWindow" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PossibleInspectors" upperBound="-1"
+        eType="#//PossibleInspector" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="VisitLocation" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PlannedInspector" lowerBound="1"
+        eType="#//InspectionTimeWindow" eOpposite="#//InspectionTimeWindow/PlannedInspections"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PlannedVisitTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VisitDuration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VisitTimeWindow">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="FromTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ToTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InspectionTimeWindow">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="FromLocation" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ToLocation" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PlannedInspections" upperBound="-1"
+        eType="#//Inspection" eOpposite="#//Inspection/PlannedInspector"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="FromTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ToTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Location">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CoordinateX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CoordinateY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PossibleInspector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Inspector" eType="#//Inspector"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Rank" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+</ecore:EPackage>
